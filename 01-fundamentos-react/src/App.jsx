@@ -1,5 +1,10 @@
-function App() {
-  return <h1>Hello World !</h1>;
-}
+import { Post } from "./Post";
 
-export default App;
+export function App() {
+  return (
+    <div>
+      <Post author="Lucas Santos" content="teste teste teste" />
+      <Post author="Diego Fernandes" content="teste2 teste2 teste2" />
+    </div>
+  );
+}
