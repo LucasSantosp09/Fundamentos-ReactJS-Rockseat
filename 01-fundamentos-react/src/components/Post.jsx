@@ -1,14 +1,15 @@
-import { format } from "date-fns";
+import { useState } from "react";
 import { Avatar } from "./Avatar.JSX";
 import { Comment } from "./Comment";
 import styles from "./Post.module.css";
 
-//author: {avatar_url: "", name:"", role="" }
-//publisheAt: Date
-//content: String
-
 export function Post({ author, content }) {
-  //const publishedDateFormatted = format();
+  const [comments, setComments] = useState([1, 2]);
+
+  function handleCreateNewComment() {
+    event.preventDefault();
+    setComments([...comments, comments.length + 1]);
+  }
 
   return (
     <article className={styles.post}>
@@ -41,15 +42,19 @@ export function Post({ author, content }) {
         })}
       </div>
 
-      <form className={styles.commentForm}>
+      <form onSubmit={handleCreateNewComment} className={styles.commentForm}>
         <strong>Deixe seu Feedback</strong>
+
         <textarea placeholder="Deixe um comentário" />
+
         <footer>
           <button type="submit">Publicar</button>
         </footer>
       </form>
       <div className={styles.commentList}>
-        <Comment />
+        {comments.map((comment) => {
+          return <Comment />;
+        })}
       </div>
     </article>
   );
