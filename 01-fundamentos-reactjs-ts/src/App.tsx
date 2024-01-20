@@ -3,12 +3,13 @@ import { Header } from "./components/Header";
 import { Sidebar } from "./components/SideBar";
 import "./global.css";
 import styles from "./App.module.css";
+import { PostType } from "./components/Post";
 
 //author: {avatar_url: "", name:"", role="" }
 //publisheAt: Date
 //content: String
 
-const posts = [
+const posts: PostType[] = [
   {
     id: 1,
     author: {
@@ -25,7 +26,6 @@ const posts = [
       },
       { type: "link", content: "👉 jane.design/doctorcare" },
     ],
-    publishedAt: new Date("2022-05-10 20:00:00"),
   },
   {
     id: 2,
@@ -43,7 +43,6 @@ const posts = [
       },
       { type: "link", content: "👉 jane.design/doctorcare" },
     ],
-    publishedAt: new Date("2024-01-08 20:00:00"),
   },
 ];
 
@@ -55,14 +54,7 @@ export function App() {
         <Sidebar />
         <main>
           {posts.map((post) => {
-            return (
-              <Post
-                key={post.id}
-                author={post.author}
-                content={post.content}
-                publisheAt={post.publisheAt}
-              />
-            );
+            return <Post post={post} />;
           })}
         </main>
       </div>
